@@ -1,19 +1,33 @@
 # name of the workflow
-name: run ptyhon program
+name: etl pipeline
 
-# Define trigger
+# define trigger
 on:
   push:
     branches:
       - main
 
 jobs:
-  ci-pipeline:
+  extract-data-job:
     runs-on: ubuntu-latest
     steps:
       - name: checkout code
         uses: actions/checkout@v2
+      - name: run extract_data.py
+        run: python extract_data.py
 
-      - name: print welcome message
-        run: echo 'welcome to github action'
+  transform-data-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v2
+      - name: run transform_data.py
+        run: python transform_data.py
 
+  load-data-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v2
+      - name: run load_data.py
+        run: python load_data.py
