@@ -5,7 +5,7 @@ name: run ptyhon program
 on:
   push:
     branches:
-      -main
+      - main
 
 jobs:
   ci-pipeline:
@@ -13,7 +13,7 @@ jobs:
     steps:
       - name: checkout code
         uses: actions/checkout@v2
-        
+
       - name: print welcome message
         run: echo 'welcome to github action'
 
